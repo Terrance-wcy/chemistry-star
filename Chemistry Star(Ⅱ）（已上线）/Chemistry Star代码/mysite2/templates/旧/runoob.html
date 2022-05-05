@@ -1,0 +1,47 @@
+
+<form action="/summit" method="post">
+        {% csrf_token %}
+        问题：<input type="text" name="tg"> <p>
+        A: <input type="text" name="a"> <p>
+        B: <input type="text" name="b"><p>
+        C: <input type="text" name="c"><p>
+        D: <input type="text" name="d"><p>
+        <label > 正确答案:</label>
+        <select name="e">
+            <option value="a"> A </option>
+            <option value="b"> B </option>
+            <option value="c"> C </option>
+            <option value="d"> D </option>
+        </select>
+
+        <input type="submit" value="提交">
+    </form>
+</p> {{ fankui }} </p>
+
+<form action="/search-post" method="post">
+        {% csrf_token %}
+        请输入题号：
+        <input type="text" name="m">
+        <input type="submit" value="Submit">
+    </form>
+
+<form action="/handin" method="post">
+  <tr>
+      <td>
+         <p>{{ m }}:{{ q }}</p>
+         <input type="radio" value="a" name="t1"/>A:{{ a }}
+         <input type="radio" value="b" name="t1"/>B:{{ b }}
+         <input type="radio" value="c" name="t1"/>C:{{ c }}
+         <input type="radio" value="d" name="t1"/>D:{{ d }}
+     </td>
+  </tr>
+
+
+        {% csrf_token %}
+        <input type="submit" value="Submit"  >
+    </form>
+</p> {{ an }} </p>
+
+
+
+

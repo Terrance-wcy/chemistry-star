@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="#" />
+    <link type="text/css" rel="styleSheet" href="../../static/log.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>账号登录</title>
+
+</head>
+
+<body>
+    <div id="bg">
+        <div id="login_wrap">
+            <div id="login"><!-- 登录注册切换动画 -->
+                {% ifequal  i  '用户名或密码错误' %}
+                    <div id="status">
+                    <i style="top: 0">Log in Failed </i>
+                   </div>
+                {% endifequal %}
+                 {% ifequal  i  "" %}
+                    <div id="status">
+                    <i style="top: 0">&nbsp&nbsp&nbsp&nbsp&nbsp&nbspLog in</i>
+                   </div>
+                {% endifequal %}
+                <span>
+                    <form action="/login" method="get">
+                        {% csrf_token %}
+                        <p class="form"><input type="text" name="tg" placeholder="username"></p>
+                        <p class="form"><input type="password" name="a" placeholder="password"></p>
+                        <input type="submit" value="Log in" class="btn"  style="margin-right: 20px;">
+                    </form>
+
+                    <a href="/zhuce/">Don't have a account ?</a>
+                </span>
+            </div>
+
+            <div id="login_img"><!-- 图片绘制框 -->
+                <span class="circle">
+                    <span></span>
+                    <span></span>
+                </span>
+                <span class="star">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+                <span class="fly_star">
+                    <span></span>
+                    <span></span>
+                </span>
+                <p id="title">HUAXUE</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+更多模板：<a href="http://www.mycodes.net/" target="_blank">源码之家</a>
+</html>

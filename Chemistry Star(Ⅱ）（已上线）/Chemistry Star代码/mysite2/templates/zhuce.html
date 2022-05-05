@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="#" />
+    <link type="text/css" rel="styleSheet" href="../../static/log.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>账号登录</title>
+
+</head>
+
+<body>
+    <div id="bg">
+        <div id="login_wrap">
+            <div id="login"><!-- 登录注册切换动画 -->
+
+                {% if  er == "用户名已被使用" %}
+                    <div id="statusz">
+                        <i style="top: 35px">&nbsp&nbsp&nbsp&nbspDuplicate username </i>
+                    </div>
+                    {% elif  e == "两次密码不一样" %}
+                    <div id="statusz">
+                        <i style="top: 35px">&nbsp&nbsp&nbsp&nbspDifferent password </i>
+                    </div>
+                    {% elif  p == "注册成功" %}
+                    <div id="statusz">
+                        <i style="top: 35px">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspSuccess</i>
+                    </div>
+                     {% elif 0 == 0 %}
+                    <div id="statusz">
+                        <i style="top: 35px">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspSign up</i>
+                    </div>
+                {% endif %}
+                <span>
+                    <form action="/zhuce" method="get">
+                        {% csrf_token %}
+                        <p class="form"><input type="text" name="er" placeholder="username"></p>
+                        <p class="form"><input type="password" name="a" placeholder="password"></p>
+                        <p class="form"><input type="password" name="b" placeholder="confirm password"></p>
+                        <input type="submit" value="Sign up" class="btn" style="margin-right: 20px;">
+                    </form>
+                    <a href="/">Already have an account ?</a>
+                </span>
+            </div>
+
+            <div id="login_img"><!-- 图片绘制框 -->
+                <span class="circle">
+                    <span></span>
+                    <span></span>
+                </span>
+                <span class="star">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+                <span class="fly_star">
+                    <span></span>
+                    <span></span>
+                </span>
+                <p id="title">HUAXUE</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+更多模板：<a href="http://www.mycodes.net/" target="_blank">源码之家</a>
+</html>

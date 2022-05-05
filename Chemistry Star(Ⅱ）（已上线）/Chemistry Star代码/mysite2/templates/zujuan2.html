@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+
+
+
+
+
+
+<html lang="ch">
+<script>
+
+         function jump(url){
+        window.location.href=url;
+        }
+</script>
+
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>高考题库</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'web1.css' %}">
+    <link href="https://fonts.googleapis.com/css?familymPermanent+Marker" >
+
+
+<body>
+<div>
+<a onclick=jump("/web1/") style="cursor:pointer">&nbsp&nbsp&nbsp&nbsp返回首页 </a>
+</div>
+<div id="header">
+    <h1>高考题库</h1>
+    <h2>College entrance examination question bank</h2>
+     <form action="/scpaper" method="get">
+        {% csrf_token %}
+        <input type="submit" value="生成试卷"  > <p>
+     </form>
+     <p>{{ fk }}</p>
+</div>
+
+
+{% for question in questions %}
+     <p>{{ question.papermark }}----第{{ question.mark }}题</p>
+    {% if forloop.counter in  zj_already %}
+         已加入
+    {% else %}
+        <form action='{% url 'urlName'  question.papermark  question.mark  forloop.counter%}' >
+        <input type="submit" value="加入此题">
+        </form>
+    {% endif %}
+
+
+    <p>{{ question.question }}</p>
+     <p>A:{{ question.answer_a }}</p>
+     <p>B:{{ question.answer_b }}</p>
+     <p>C:{{ question.answer_c }}</p>
+     <p>D:{{ question.answer_d }}</p>
+     <HR>
+
+{% endfor %}
+
+
+</div>
+
+<div id="footer">
+    <p>联系我们 w18669341630@163.com 山东大学威海 数科班</p>
+    <p>Copyright www.huaxuexing.cn<p>
+
+</div>
+</body>
+</html>
+
+
+

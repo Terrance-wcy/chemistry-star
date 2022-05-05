@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Tam - Creative Portfolio Template</title>
+	<meta name="description" content="Tam - Creative Portfolio Template" />
+	<meta name="keywords" content="blog, business card, creative, creative portfolio, cv theme, online resume, personal, portfolio, professional cv, responsive portfolio, resume, resume theme, vcard" />
+	<meta name="author" content="beingeorge" />
+	<meta name="theme-color" content="#2a2d35">
+
+	<!-- Vendor Css-->
+	<link rel="stylesheet" href="/static/vendor.css" />
+	<link rel="stylesheet" href="/static/LineIcons.min.css" />
+
+	<!-- TamTemplate style Css -->
+	<link href="/static/tam.css" rel="stylesheet">
+
+	<!-- Custom style Css -->
+	<link href="/static/custom.css" rel="stylesheet">
+</head>
+
+<body data-spy="scroll" data-target=".navbar" >
+
+
+
+	<!-- START: Aside -->
+	<aside class="aside">
+		<!-- START: NAVBAR -->
+
+		<div class="nav-wrapper">
+
+			<div class="navbar-toggler">
+				<svg class="ham hamRotate ham1" viewBox="0 0 100 100" width="60">
+				  <path class="line top" d="m 30,33 h 40 c 0,0 9.044436,-0.654587 9.044436,-8.508902 0,-7.854315 -8.024349,-11.958003 -14.89975,-10.85914 -6.875401,1.098863 -13.637059,4.171617 -13.637059,16.368042 v 40" />
+				  <path class="line middle" d="m 30,50 h 40" />
+				  <path class="line bottom" d="m 30,67 h 40 c 12.796276,0 15.357889,-11.717785 15.357889,-26.851538 0,-15.133752 -4.786586,-27.274118 -16.667516,-27.274118 -11.88093,0 -18.499247,6.994427 -18.435284,17.125656 l 0.252538,40" />
+				</svg>
+			</div>
+
+			<nav class="navbar text-center align-items-center justify-content-center">
+
+
+
+                <div class="collapse navbar-collapse show" id="navbarCollapse">
+                	<div class="about-avatar mb-5">
+                		<a>
+							<img src="/static/image/head.jpg/" alt="" class="img-fluid mx-auto d-block shadow-sm rounded-full">
+						</a>
+
+						<div class="about-avatar-details mt-4">
+							<h1>{{ n }}</h1>
+							<p class="badge">{{s}}</p>
+						</div>
+
+					</div>
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/web1/"><i class="lni-offer"></i>主页面</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/gaokao/" ><i class="lni-home"></i>高考真题</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/shoucang/" ><i class="lni-home"></i>我的收藏</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/jszjk/"><i class="lni-briefcase"></i>教师组卷库</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/statistic/"><i class="lni-graduation"></i>统计信息</a>
+                        </li>
+                        {% if  s == 'teacher' or s == "admin" %}
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/zujuan/"><i class="lni-pencil"></i></i>教师组卷</a>
+                        </li>
+                        {% endif %}
+                        {% ifequal  s  'admin' %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/gk/"><i class="lni-phone-handset"></i>题目录入</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/jsrz/"><i class="lni-phone-handset"></i>教师认证</a>
+                        </li>
+                        {% endifequal %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/"><i class="lni-phone-handset"></i>重新登录</a>
+                        </li>
+
+                <div>
+
+               	<div class="aside-footer">
+                	<ul class="list-unstyled list-inline">
+                        <li class="list-inline-item"><a href="#"><i class="lni-facebook-filled"></i></a></li>
+                        <li class="list-inline-item"><a href="#"><i class="lni-skype"></i></i></a></li>
+                        <li class="list-inline-item"><a href="#"><i class="lni-youtube"></i></a></li>
+                        <li class="list-inline-item"><a href="#"><i class="lni-linkedin-original"></i></a></li>
+                    </ul>
+                </div>
+	        </nav>
+        </div>
+        <!-- END: NAVBAR -->
+    </aside>
+    <!-- START: Aside -->
+
+    <div class="page-overlay">
+    	<span class="overlay-1"></span>
+    	<span class="overlay-2"></span>
+    </div>
+
+    <div class="page-wrapper">
+
+
+		<!-- START: RESUME -->
+
+		<section class="section section-light section-resume" id="resume">
+			<div class="container">
+
+				<div class="section-head">
+					<h3>高考题库</h3>
+                    <p>&nbsp</p>
+                    <form action="/scpaper" method="get">
+                    {% csrf_token %}
+                   &nbsp&nbsp<input type="submit" value="生成试卷"  > <p>
+                     </form>
+
+				</div>
+
+
+				<div class="section-resume-wrap">
+
+
+					<div class="section-education">
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="EducationList">
+									<div class="row">
+                                        {% for question in questions %}
+										<div class="col-md-6">
+											<div class="resume-list b-box p-4 mb-4">
+												<div>
+													<h5>{{ question.papermark }}--第{{ question.mark }}题
+                                                    <p>&nbsp</p>
+													<p>{{ question.question }}</p>
+                                                    <p>&nbsp</p>
+                                                    <p>A:{{ question.answer_a }}</p>
+                                                    <p>B:{{ question.answer_b }}</p>
+                                                    <p>C:{{ question.answer_c }}</p>
+                                                    <p>D:{{ question.answer_d }}</p>
+												</div>
+                                                <p>&nbsp</p>
+                                                  {% if forloop.counter in  zj_already %}
+                                                   已加入
+                                                {% else %}
+                                                <form action='{% url 'urlName'  question.papermark  question.mark  forloop.counter%}' >
+                                                     <input  type="submit" value="加入此题">
+                                                </form>
+                                                 {% endif %}
+											</div>
+										</div>
+
+                                        {% endfor %}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</section>
+
+		<!-- END: RESUME -->
+
+		<!-- START: CTA -->
+		<section class="section section-freelance section-light text-center ">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="section-head wow fadeInUp" data-wow-duration="1.5s">
+							<h2>Let's work together!</h2>
+						</div>
+						<div class="mt-5 wow fadeInUp" data-wow-duration="1.5s" data-wow-delay=".2s">
+							<a href="#" class="btn hover-state">Hire Me!</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- END: CTA -->
+
+		<section class="section section-dark section-skills">
+			<div class="container">
+				<div class="section-head ">
+					<span>ABILITIES</span>
+					<h2>My Skills</h2>
+				</div>
+
+				<div class="section-skills-wrap">
+					<div class="row">
+						<div class="col-md-6">
+							<p>Proin laoreet elementum ligula, ac tincidunt lorem accumsan nec. Fusce eget urna ante. Donec massa velit, varius a accumsan ac, tempor iaculis massa. Sed placerat justo sed libero varius vulputate. Ut a mi tempus massa malesuada fermentum.</p>
+							<p> tempor iaculis massa. Sed placerat justo sed libero varius vulputate. Ut a mi tempus massa malesuada fermentum.</p>
+						</div>
+
+						<div class="col-md-6">
+							<div class="resume-panel">
+								<div class="mb-4 wow fadeInUp"  data-wow-duration="1.5s">
+									<h6>Graphic Design </h6>
+									<div class="progress mt-2">
+										<div class="progress-bar" role="progressbar" style="width: 95%;" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
+									</div>
+								</div>
+
+								<div class="mb-4 wow fadeInUp"  data-wow-duration="1.5s" data-wow-delay=".2s">
+									<h6>Logo Design</h6>
+									<div class="progress mt-2">
+										<div class="progress-bar" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+									</div>
+								</div>
+
+								<div class="mb-4 wow fadeInUp"  data-wow-duration="1.5s" data-wow-delay=".3s">
+									<h6>Logo Design</h6>
+									<div class="progress mt-2">
+										<div class="progress-bar" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+									</div>
+								</div>
+
+								<div class="mb-0 wow fadeInUp"  data-wow-duration="1.5s" data-wow-delay=".4s">
+									<h6>Photoshop & Figma</h6>
+									<div class="progress mt-2">
+										<div class="progress-bar" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+									</div>
+								</div>
+
+							</div>
+						</div>	
+					</div>
+				</div>
+			</div>
+
+		</section>
+
+		<!--START: FOOTER-->
+		<footer class="footer section section-light">
+			<div class="container">
+				<p class="copyright text-center mb-0">&copy; Tam 2020 | All Right Reserved 更多模板：<a href="http://www.mycodes.net/" target="_blank">源码之家</a></p>
+			</div>
+		</footer>
+		<!--END: FOOTER-->
+
+
+	</div>
+
+
+	<!-- JAVASCRIPTS -->
+
+	<script src="assets/js/vendor.js"></script>
+
+	<!-- Map -->
+	<script src="assets/js/map.js"></script>
+	<script src="https://ditu.google.cn/maps/api/js?key=AIzaSyD79MY72taVRlZVX2DU6L5PXOh3ezUUKMc&amp;callback=initMap" async="" defer=""></script>
+	
+	<!-- Custom Js -->
+	<script src="assets/js/custom.js"></script>
+</body>
+</html>
